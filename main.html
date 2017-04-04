@@ -1,21 +1,41 @@
-
 <html lang="en">
+
 <head>
     <title>Punctuality</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">  
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/daterangepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/daterangepicker.css" />
+    <script src="js/underscore.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="js/main.js"></script>
 </head>
+
 <body>
-    <article class"main-card">
-    
-    </article>
+    <div class="main-card">
+        <div class="media employee-overview">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object employee-img" src="img/morty.jpg" alt="Employee">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">Morty Smith</h4>
+            </div>
+            <div class="media-right">
+                <input type="text" id="daterange" class="form-control daterange-input center-vertically">
+                <i id="cal-icon" class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+            </div>
+        </div>
+        <hr>
+    </div>
 </body>
+
 </html>
