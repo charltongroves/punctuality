@@ -19,10 +19,10 @@ $(document).ready(function () {
         $(this).parent().find('input').click();
     });
     var root = "http://localhost:4567/"
-    var shifts_get_request = null;
-    var rosters_get_request = null;
-    var shifts_global = null;
-    var rosters_global = null;
+    var shifts_get_request;
+    var rosters_get_request;
+    var shifts_global;
+    var rosters_global;
     /*
     PreCondition: startDate and endDate are of the form "yyyy-mm-dd"
     */
@@ -30,7 +30,7 @@ $(document).ready(function () {
         get_shifts(start, end);
         get_rosters(start, end);
         $.when(shifts_get_request, rosters_get_request).done(function() {
-            shifts_info = process_shift_info(shifts_global, rosters_global);
+            var shifts_info = process_shift_info(shifts_global, rosters_global);
         });
     }
 
