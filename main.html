@@ -4,17 +4,19 @@
     <title>Punctuality</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/1.0.0/dist/progressbar.js"></script>
     <script src="js/moment.js"></script>
     <script src="js/daterangepicker.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/daterangepicker.css" />
+    <link rel="stylesheet" type="text/css" href="css/daterangepicker.css">
     <script src="js/underscore.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <script src="js/progbar.js"></script>
     <script src="js/main.js"></script>
 </head>
 
@@ -27,7 +29,7 @@
                 </a>
             </div>
             <div class="media-body">
-                <h4 class="media-heading">Morty Smith</h4>
+                <h4 id="employee-name" class="media-heading">Morty Smith</h4>
             </div>
             <div class="media-right">
                 <input type="text" id="daterange" class="form-control daterange-input center-vertically">
@@ -35,6 +37,17 @@
             </div>
         </div>
         <hr>
+        <div id="meta-info">
+            <div class="flex-container">
+                <div id="progress_bar"></div>
+                <p id="meta-overview"></p>
+            </div>
+            <div class="flex-container">
+                <div id="arrived-late" class="meta-info-box"></div>
+                <div id="punctual" class="meta-info-box"></div>
+                <div id="left-early" class="meta-info-box"></div>
+            </div>
+        </div>
     </div>
 </body>
 

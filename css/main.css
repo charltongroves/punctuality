@@ -20,23 +20,70 @@ body {
 .media {
     display: flex;
 }
+
 .media-heading {
     font-weight: 100;
     font-size: 3rem;
 }
+
 .media-body {
     display: flex;
     align-items: center;
     text-align: left;
 }
-
-.employee-overview {}
-
+.flex-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.meta-info-box {
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 1rem;
+    border-radius: 2px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #BBDEFB;
+    display: flex;
+    width: 15rem;
+    height: 4rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: rgba(0,0,0,0.5);
+    text-align: center;
+}
+.meta-info-box p{
+    float: left;
+}
+.meta-info-box div {
+    float: right;
+}
+.meta-info-box p span{
+    color: #AA00FF;
+}
 .employee-img {
     width: 64px;
     height: 64px;
     border-radius: 50%;
 }
+
+#progress_bar {
+    margin: 20px;
+    width: 100px;
+    height: 100px;
+}
+
+#meta-overview {
+    font-size: 2rem;
+    font-weight: 300;
+    margin: 20px;
+    text-align: left;
+}
+#meta-overview span {
+    font-weight: 400;
+    color: #AA00FF;
+}
+
 .daterange-input {
     width: 25rem;
     background: #fff;
@@ -48,11 +95,13 @@ body {
     cursor: pointer;
     border: 1px solid #ddd;
 }
+
 .center-vertically {
     position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+    top: 50%;
+    transform: translateY(-50%);
 }
+
 .media-right #cal-icon {
     position: absolute;
     top: 4rem;
