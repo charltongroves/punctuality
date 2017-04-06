@@ -147,7 +147,7 @@ $(document).ready(function () {
         var savedOrOver = (meta.timeSaved < 0) ? "Total overtime" : "Time saved"
         var meta_overview = employee + " is punctual <span>" + 
             punctualPercent +"%</span> of the time. <br>" + savedOrOver + 
-            ": <span>" + Math.abs(meta.timeSaved).toString() + " mins.</span>"
+            ": <span>" + Math.abs(meta.timeSaved).toString() + " mins</span>."
 
         $( "#meta-overview" ).html(meta_overview);
         $( "#arrived-late" ).html("<p>Arrived Late</p><p><span>" + meta.arrivedLate.toString() + "</span></p>");

@@ -21,7 +21,7 @@ body {
     display: flex;
 }
 
-.media-heading {
+#employee-name {
     font-weight: 100;
     font-size: 3rem;
 }
@@ -39,7 +39,7 @@ body {
 .meta-info-box {
     justify-content: space-between;
     padding: 1rem;
-    margin: 1rem;
+    margin: 2rem 1rem;
     border-radius: 2px;
     border-style: solid;
     border-width: 1px;
@@ -68,7 +68,7 @@ body {
 }
 
 #progress_bar {
-    margin: 20px;
+    margin: 0 2rem;
     width: 100px;
     height: 100px;
 }
