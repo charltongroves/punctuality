@@ -4,7 +4,7 @@ var bar;
 $(document).ready(function () {
     bar = new ProgressBar.Circle(progress_bar, {
         strokeWidth: 6,
-        color: '#AA00FF',
+        color: '#2196F3',
         trailColor: '#eee',
         trailWidth: 1,
         easing: 'easeInOut',
@@ -15,10 +15,10 @@ $(document).ready(function () {
             alignToBottom: true
         },
         from: {
-            color: '#AA00FF'
+            color: '#2196F3'
         },
         to: {
-            color: '#E040FB'
+            color: '#2196F3'
         },
         // Set default step function for all animate calls
         step: (state, bar) => {
