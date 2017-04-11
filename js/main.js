@@ -4,7 +4,7 @@ $(document).ready(function () {
     var init_end_date = moment("29/08/2014", 'DD/MM/YYYY')
     var financial_year = moment().month("July").startOf('month')
     var start_of_current_financial_year = moment().isAfter(financial_year) ? financial_year.format('DD/MM/YYYY') : financial_year.subtract(1, 'year').format('DD/MM/YYYY')
-    
+
     /*
     Initialize date range picker
     */
@@ -26,18 +26,24 @@ $(document).ready(function () {
         update_punctuality(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))
         console.log("New date range selected: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ")");
     });
-    $('.media-right i').click(function () {
-        $(this).parent().find('input').click();
-    });
+
     var root = "http://localhost:4567/"
     var shifts_get_request;
     var rosters_get_request;
     var shifts_global;
     var rosters_global;
+    var processed_shifts_global;
     $.fn.dataTable.moment('MMMM Do YYYY');
     update_daterange_button_text(init_start_date, init_end_date, null)
     update_punctuality(init_start_date.format('YYYY-MM-DD'), init_end_date.format('YYYY-MM-DD'))
-
+    $('.nav-tabs a[href="#overview"]').click(function () {
+        $(this).tab('show');
+        animate_overview(processed_shifts_global);
+    });
+    $('.nav-tabs a[href="#breakdown"]').click(function () {
+        $(this).tab('show');
+        update_breakdown(processed_shifts_global)
+    });
     /*
     PreCondition: startDate and endDate are of the form "YYYY-MM-DD"
     */
@@ -54,10 +60,13 @@ $(document).ready(function () {
             }
             var shifts_info = process_shift_info(shifts_global, rosters_global); // logic.js
             if (shifts_info.shifts.length > 0) {
+                processed_shifts_global = shifts_info;
                 update_meta_view(shifts_info.meta); // view.js
+                animate_punctual_day_graph(shifts_info.breakdown_info.punctual_day)
                 display_data(shifts_info.shifts) // view.js
                 show_all()
             } else {
+                processed_shifts_global = undefined;
                 hide_all()
                 reset_all()
                 display_no_data(); // view.js

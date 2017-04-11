@@ -43,11 +43,10 @@
         height: 64px;
         border-radius: 50%;
     }
-    
     /* daterange */
     
     #daterange {
-        white-space:nowrap;
+        white-space: nowrap;
         background: #fff;
         color: #333;
         padding: 8px;
@@ -116,6 +115,16 @@
     th {
         font-weight: normal;
     }
+    /* Tabs */
+    
+    .nav-tabs {
+        margin-top: 2rem;
+    }
+    
+    #overview,
+    #breakdown {
+        margin-top: 2rem;
+    }
     /* Shifts meta-info */
     
     .flex-container {
@@ -153,7 +162,6 @@
         color: $accent-color;
     }
     
-    
     #progress_bar {
         margin: 0 2rem;
         width: 100px;
@@ -179,16 +187,19 @@
         border-color: #2e6da4;
     }
     /* Shifts table style */
+    
     th.col-1,
     th.col-3,
     th.col-5 {
         width: 180px;
     }
+    
     #punctual-table-wrapper .bottom {
         margin-top: 1.5rem;
         display: flex;
         justify-content: space-between;
     }
+    
     #punctual-table-wrapper .top {
         display: flex;
         justify-content: space-between;
@@ -202,6 +213,7 @@
     th {
         border-bottom-width: 0px !important;
     }
+    
     td span {
         cursor: default;
     }
@@ -218,19 +230,23 @@
     span .on-time {
         color: $primary-color-dark;
     }
-
-    .tooltip-inner{
+    
+    .tooltip-inner {
         background-color: $primary-text-color;
     }
+    
     .tooltip.top .tooltip-arrow {
-            border-top-color: $primary-text-color;
+        border-top-color: $primary-text-color;
     }
+    
     .tooltip.in {
         opacity: 0.8;
     }
+    
     .tooltip {
-    font-family: "Lato",Helvetica,Arial,sans-serif;
+        font-family: "Lato", Helvetica, Arial, sans-serif;
     }
+    
     .pagination>.active>a,
     .pagination>.active>a:focus,
     .pagination>.active>a:hover,
@@ -243,4 +259,37 @@
     
     .dataTables_info {
         font-weight: 200;
+    }
+    
+    .chart rect.max {
+        fill: $accent-color;
+    }
+    
+    .axis path,
+    .axis line {
+        fill: none;
+        stroke: #666
+    }
+    
+    .axis text {
+        font-size: 16px;
+    }
+    
+    .chart .current {
+        fill: green;
+        cursor: pointer;
+    }
+
+    .chart {
+        width: 730px;
+        padding: 0 20px 20px 20px;
+        height: 280px;
+    }
+    #breakdown p {
+                font-size: 2.8rem;
+        font-weight: 300;
+        margin: 4rem 0 2rem 0 ;
+    }
+    text.bar {
+        color: $accent-color !important;
     }

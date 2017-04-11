@@ -83,7 +83,7 @@ function status_to_html(actual) {
 /*
 Initializes the calendar date range picker to the start date and end date params
 */
-function init_daterange(init_start_date,init_end_date) {
+function init_daterange(init_start_date, init_end_date) {
     var financial_year = moment().month("July").startOf('month')
     var start_of_current_financial_year = moment().isAfter(financial_year) ? financial_year : financial_year.subtract(1, 'year')
     $('#daterange').daterangepicker({
@@ -118,12 +118,85 @@ function update_daterange_button_text(start, end, label) {
     return;
 }
 
+function reset_overview_animations() {
+    bar.animate(0);
+}
+
+function animate_overview(shifts_info) {
+    if (shifts_info == undefined || shifts_info.shifts.length < 1) {
+        return
+    }
+    bar.animate(Math.ceil(shifts_info.meta.punctualPercent * 100) / 100.0); //get ceiling of 0.0x decimal. eg: 0.732 -> 0.74
+}
+
+function update_breakdown(shifts_info) {
+    if (shifts_info == undefined || shifts_info.shifts.length < 1) {
+        return
+    }
+    reset_overview_animations();
+    animate_punctual_day_graph(shifts_info.breakdown_info.punctual_day)
+}
+
+function animate_punctual_day_graph(punctual_day) {
+    function get_percent(day) {
+        var total = day.punctual + day.notPunctual
+        if (total == 0) {
+            day.noData = true;
+            return 0
+        }
+        return Math.ceil((day.punctual / total) * 100)
+    }
+    var barData = [{
+            label: "Monday",
+            value: get_percent(punctual_day["Mon"]),
+            noData: punctual_day["Mon"].noData
+        },
+        {
+            label: "Tuesday",
+            value: get_percent(punctual_day["Tue"]),
+            noData: punctual_day["Tue"].noData
+        },
+        {
+            label: "Wednesday",
+            value: get_percent(punctual_day["Wed"]),
+            noData: punctual_day["Wed"].noData
+        },
+        {
+            label: "Thursday",
+            value: get_percent(punctual_day["Thu"]),
+            noData: punctual_day["Thu"].noData
+        },
+        {
+            label: "Friday",
+            value: get_percent(punctual_day["Fri"]),
+            noData: punctual_day["Fri"].noData
+        },
+        {
+            label: "Saturday",
+            value: get_percent(punctual_day["Sat"]),
+            noData: punctual_day["Sat"].noData
+        },
+        {
+            label: "Sunday",
+            value: get_percent(punctual_day["Sun"]),
+            noData: punctual_day["Sun"].noData
+        }
+    ];
+    $('#punctual-day-chart').html('<svg class="chart"></svg>');
+    $("#breakdown p").text("Punctuality per day of the week")
+    create_punctual_day_graph(barData);
+}
+
 /*
 Called when there is no shift/roster data to display
 */
 function display_no_data() {
     $("#meta-info").show()
     $("#meta-overview").html("There is no data to display in the selected dates.");
+
+    $("#breakdown p").show()
+    $("#breakdown p").html("There is no data to display in the selected dates.");
+
 }
 
 /*
@@ -132,6 +205,10 @@ Called when the get requests for shift and roster data fails.
 function display_error_connecting() {
     $("#meta-info").show()
     $("#meta-overview").html("There was an error connecting to the server.");
+
+     $("#breakdown p").show()
+    $("#breakdown p").html("There was an error connecting to the server.");
+
 }
 
 /*
@@ -156,6 +233,8 @@ function hide_all() {
     $("#arrived-late").hide()
     $("#punctual").hide()
     $("#left-early").hide()
+    $("#punctual-day-chart").hide()
+    $("#breakdown p").hide()
 }
 
 /*
@@ -167,6 +246,8 @@ function show_all() {
     $("#arrived-late").show()
     $("#punctual").show()
     $("#left-early").show()
+    $("#punctual-day-chart").show()
+    $("#breakdown p").show()
     $("#punctual-table-wrapper").show()
     $('#punctual-table-wrapper').collapse("show")
 }
