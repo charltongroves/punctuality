@@ -104,8 +104,16 @@ th {
 
 #error-message {
   margin: 4rem 2rem;
-  font-size: 2rem;
-}
+  font-size: 2rem; }
+
+.nav > li > a:focus,
+.nav > li > a:hover {
+  text-decoration: none;
+  background-color: #f5fafe; }
+
+.rippleJS .ripple {
+  background: #1976D2; }
+
 /* Shifts meta-info */
 .flex-container {
   display: flex;

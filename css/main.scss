@@ -125,10 +125,20 @@
     #breakdown {
         margin-top: 2rem;
     }
-
+    
     #error-message {
         margin: 4rem 2rem;
         font-size: 2rem;
+    }
+    
+    .nav>li>a:focus,
+    .nav>li>a:hover {
+        text-decoration: none;
+        background-color: lighten($primary-color-light, 12%);
+    }
+    
+    .rippleJS .ripple {
+        background: $primary-color-dark;
     }
     /* Shifts meta-info */
     
@@ -284,17 +294,19 @@
         fill: green;
         cursor: pointer;
     }
-
+    
     .chart {
         width: 730px;
         padding: 0 20px 20px 20px;
         height: 280px;
     }
+    
     #breakdown p {
-                font-size: 2.8rem;
+        font-size: 2.8rem;
         font-weight: 300;
-        margin: 4rem 0 2rem 0 ;
+        margin: 4rem 0 2rem 0;
     }
+    
     text.bar {
         color: $accent-color !important;
     }
