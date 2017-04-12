@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="css/daterangepicker.css">
     <script src="js/imports/underscore.js"></script>
     <script src="https://d3js.org/d3.v3.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/loading.css">
     <link rel="stylesheet" type="text/css" href="css/main.css">
     <script src="js/imports/progbar.js"></script>
     <script src="js/graphs.js"></script>
@@ -51,6 +52,9 @@
             <li><a href="#breakdown">Breakdown</a></li>
         </ul>
         <div class="tab-content">
+            <div id="loading">
+            </div>
+            <p id="error-message"></p>
             <div id="overview" class="tab-pane fade in active">
                 <div id="meta-info">
                     <div class="flex-container">

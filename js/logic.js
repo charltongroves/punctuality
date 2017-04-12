@@ -152,7 +152,7 @@ function get_punctual_info(actual, expected, prefix) {
     } else {
         punctual_info.status = "on time";
     }
-    var difference = Math.ceil(Math.abs(difference));
+    var difference = Math.floor(Math.abs(difference));
     var plural = (difference == 1) ? " minute" : " minutes";
     punctual_info.diffInt = difference
     punctual_info.diff = difference.toString() + plural

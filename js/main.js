@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+    hide_all()
     var init_start_date = moment("06/08/2013", 'DD/MM/YYYY')
     var init_end_date = moment("29/08/2014", 'DD/MM/YYYY')
     var financial_year = moment().month("July").startOf('month')
@@ -15,7 +15,7 @@ $(document).ready(function () {
             'Last Pay Month': [moment().subtract(1, 'months').startOf('month'), moment().subtract(1, 'months').endOf('month')],
             'This Financial Year': [moment(start_of_current_financial_year, 'DD/MM/YYYY'), moment()],
             'Last Financial Year': [moment(start_of_current_financial_year, 'DD/MM/YYYY').subtract(1, 'year'), moment(start_of_current_financial_year, 'DD/MM/YYYY')],
-            'All Time': [moment().subtract(100, 'years').startOf('year'), moment()],
+            'All Time': [moment('01/01/2012', 'DD/MM/YYYY'), moment()],
         },
         "alwaysShowCalendars": true,
         "startDate": init_start_date.format('MM/DD/YYYY'),
@@ -48,17 +48,21 @@ $(document).ready(function () {
     PreCondition: startDate and endDate are of the form "YYYY-MM-DD"
     */
     function update_punctuality(start, end) {
+        clear_error_message();
+        show_loading();
         get_shifts(start, end);
         get_rosters(start, end);
         $.when(shifts_get_request, rosters_get_request).always(function () {
+            hide_loading();
             if (shifts_global == undefined || rosters_global == undefined ||
                 shifts_global == null || rosters_global == null) {
-                hide_all()
                 reset_all()
+                hide_all()
                 display_error_connecting(); // view.js
                 return;
             }
             var shifts_info = process_shift_info(shifts_global, rosters_global); // logic.js
+            reset_all()
             if (shifts_info.shifts.length > 0) {
                 processed_shifts_global = shifts_info;
                 update_meta_view(shifts_info.meta); // view.js
@@ -68,7 +72,6 @@ $(document).ready(function () {
             } else {
                 processed_shifts_global = undefined;
                 hide_all()
-                reset_all()
                 display_no_data(); // view.js
             }
         });

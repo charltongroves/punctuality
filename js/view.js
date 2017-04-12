@@ -186,16 +186,21 @@ function animate_punctual_day_graph(punctual_day) {
     $("#breakdown p").text("Punctuality per day of the week")
     create_punctual_day_graph(barData);
 }
-
+function show_loading() {
+    $("#loading").html('<div class="spinner">' +
+  '<div class="double-bounce1"></div>' +
+ ' <div class="double-bounce2"></div>'+
+'</div>')
+}
+function hide_loading() {
+    $("#loading").html('')
+}
 /*
 Called when there is no shift/roster data to display
 */
 function display_no_data() {
-    $("#meta-info").show()
-    $("#meta-overview").html("There is no data to display in the selected dates.");
-
-    $("#breakdown p").show()
-    $("#breakdown p").html("There is no data to display in the selected dates.");
+    $("#error-message").show()
+    $("#error-message").html("There is no data to display in the selected dates.");
 
 }
 
@@ -203,12 +208,12 @@ function display_no_data() {
 Called when the get requests for shift and roster data fails.
 */
 function display_error_connecting() {
-    $("#meta-info").show()
-    $("#meta-overview").html("There was an error connecting to the server.");
+    $("#error-message").show()
+    $("#error-message").html("There was an error connecting to the server.");
+}
 
-     $("#breakdown p").show()
-    $("#breakdown p").html("There was an error connecting to the server.");
-
+function clear_error_message() {
+     $("#error-message").html("");
 }
 
 /*
@@ -221,6 +226,7 @@ function reset_all() {
     $("#arrived-late").html("")
     $("#punctual").html("")
     $("#left-early").html("")
+    $("#error-message").html('')
 }
 
 /*
