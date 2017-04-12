@@ -49,13 +49,15 @@ $(document).ready(function () {
     */
     function update_punctuality(start, end) {
         clear_error_message();
-        show_loading();
+        if (processed_shifts_global == undefined) show_loading();
         get_shifts(start, end);
         get_rosters(start, end);
         $.when(shifts_get_request, rosters_get_request).always(function () {
             hide_loading();
-            if (shifts_global == undefined || rosters_global == undefined ||
+            if (shifts_get_request.statusText == "error" || rosters_get_request.statusText == "error" ||
+                shifts_global == undefined || rosters_global == undefined ||
                 shifts_global == null || rosters_global == null) {
+                processed_shifts_global = undefined;
                 reset_all()
                 hide_all()
                 display_error_connecting(); // view.js

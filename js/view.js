@@ -80,30 +80,7 @@ function status_to_html(actual) {
         return html_start + actual.status + time_diff + html_end;
     }
 }
-/*
-Initializes the calendar date range picker to the start date and end date params
-*/
-function init_daterange(init_start_date, init_end_date) {
-    var financial_year = moment().month("July").startOf('month')
-    var start_of_current_financial_year = moment().isAfter(financial_year) ? financial_year : financial_year.subtract(1, 'year')
-    $('#daterange').daterangepicker({
-        "ranges": {
-            'This Pay Period': [moment().startOf('week'), moment().endOf('week')],
-            'Last Pay Period': [moment().subtract(7, 'days').startOf('week'), moment().subtract(7, 'days').endOf('week')],
-            'Last Pay Month': [moment().subtract(1, 'months').startOf('month'), moment().subtract(1, 'months').endOf('month')],
-            'This Financial Year': [start_of_current_financial_year, moment()],
-            'Last Financial Year': [start_of_current_financial_year.subtract(1, 'year'), start_of_current_financial_year],
-        },
-        "alwaysShowCalendars": true,
-        "startDate": init_start_date.format('MM/DD/YYYY'),
-        "endDate": init_end_date.format('MM/DD/YYYY'),
-        "opens": "left"
-    }, function (start, end, label) {
-        update_daterange_button_text(start, end, label)
-        window.update_punctuality(start.format('YYYY-MM-DD'), end.format('YYYY-MM-DD'))
-        console.log("New date range selected: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ")");
-    });
-}
+
 /*
 This function determines the text that goes inside the daterangepickers button
 */
@@ -124,7 +101,7 @@ function reset_overview_animations() {
 
 function animate_overview(shifts_info) {
     if (shifts_info == undefined || shifts_info.shifts.length < 1) {
-        return
+        return //don't animate if there is no data.
     }
     bar.animate(Math.ceil(shifts_info.meta.punctualPercent * 100) / 100.0); //get ceiling of 0.0x decimal. eg: 0.732 -> 0.74
 }
@@ -184,7 +161,7 @@ function animate_punctual_day_graph(punctual_day) {
     ];
     $('#punctual-day-chart').html('<svg class="chart"></svg>');
     $("#breakdown p").text("Punctuality per day of the week")
-    create_punctual_day_graph(barData);
+    create_punctual_day_graph(barData); //graphs.js
 }
 function show_loading() {
     $("#loading").html('<div class="spinner">' +

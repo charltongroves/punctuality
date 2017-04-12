@@ -78,11 +78,12 @@ Updates the meta and breakdown_info information with the new information gathere
 
 SIDE EFFECT: This function occasionally changes the status value of shift_info.actualStart & shift_info.actualFinish
 Pre Conditions: Meta has been initialised by init_meta.
+                Breakdown_info has been initialised by init_breakdown_info()
                 shift_info has been processed by get_punctual_info()
 */
 function update_meta_and_breakdown_info(shift_info, meta, breakdown_info) {
-    //Clock in
     var day = moment(shift_info.day, 'MMMM Do YYYY').format('ddd')
+    //Clock in
     if (shift_info.actualStart.status == "arrived late") {
         meta.arrivedLate++;
         breakdown_info.punctual_day[day].notPunctual++;
@@ -124,7 +125,6 @@ function update_meta_and_breakdown_info(shift_info, meta, breakdown_info) {
         meta.punctual++;
         breakdown_info.punctual_day[day].punctual++;
     }
-    return meta
 }
 /*
 Gets a roster start/end time and a shift start/end time and returns human readable
