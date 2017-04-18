@@ -1,6 +1,6 @@
 My solution to Tanda's punctuality problem.
 
-Written in JS/HTML/CSS using jQuery|d3.js|moment.js
+Written in JS/HTML/CSS using jQuery | d3.js | moment.js
 
 See a demo of the website here https://my.mixtape.moe/cprfbt.mp4
 
